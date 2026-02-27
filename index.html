@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画SVG图标展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .icons-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            flex-wrap: wrap;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .icon-item svg {
+            width: 80px;
+            height: 80px;
+            display: block;
+        }
+
+        .icon-name {
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1200px) {
+            .icons-wrapper {
+                gap: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .icons-wrapper {
+                gap: 40px;
+            }
+
+            .icon-item svg {
+                width: 60px;
+                height: 60px;
+            }
+
+            .icon-name {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icons-wrapper">
+            <div class="icon-item">
+                <svg width="80" height="80" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <style>
+                            @keyframes growBar {
+                                0% { transform: scaleY(0); }
+                                100% { transform: scaleY(1); }
+                            }
+                            @keyframes drawTrendLine {
+                                0% {
+                                    stroke-dasharray: 60 60;
+                                    stroke-dashoffset: -60;
+                                }
+                                75% {
+                                    stroke-dasharray: 60 60;
+                                    stroke-dashoffset: 0;
+                                }
+                                90% {
+                                    stroke-dasharray: 60 60;
+                                    stroke-dashoffset: -2;
+                                }
+                                100% {
+                                    stroke-dasharray: 60 60;
+                                    stroke-dashoffset: 0;
+                                }
+                            }
+                            .bar {
+                                transform-origin: 50% 15.75px;
+                                animation: growBar 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                            }
+                            .trend-line {
+                                stroke-dasharray: 60 60;
+                                stroke-dashoffset: -60;
+                                animation: drawTrendLine 1.5s ease-in-out 0.4s forwards;
+                            }
+                        </style>
+                    </defs>
+                    <path class="bar" d="M9 12V15.75" stroke="black" stroke-opacity="0.9" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="bar" d="M12 10.5V15.75" stroke="black" stroke-opacity="0.9" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="bar" d="M15 7.5V15.75" stroke="black" stroke-opacity="0.9" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="bar" d="M3 13.5V15.75" stroke="black" stroke-opacity="0.9" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="bar" d="M6 10.5V15.75" stroke="black" stroke-opacity="0.9" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="trend-line" d="M16.5 2.25L10.0155 8.7345C9.98067 8.76942 9.93928 8.79713 9.89372 8.81603C9.84817 8.83494 9.79933 8.84467 9.75 8.84467C9.70067 8.84467 9.65183 8.83494 9.60628 8.81603C9.56072 8.79713 9.51933 8.76942 9.4845 8.7345L7.0155 6.2655C6.94518 6.1952 6.84981 6.1557 6.75037 6.1557C6.65094 6.1557 6.55557 6.1952 6.48525 6.2655L1.5 11.25" stroke="black" stroke-opacity="0.9" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="icon-name">市场分析</div>
+            </div>
+
+            <div class="icon-item">
+                <svg width="80" height="80" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <style>
+                            @keyframes growLeftBar {
+                                0% { transform: scaleY(0); transform-origin: 50% 12px; }
+                                70% { transform: scaleY(1.05); transform-origin: 50% 12px; }
+                                100% { transform: scaleY(1); transform-origin: 50% 12px; }
+                            }
+                            @keyframes growRightBar {
+                                0% { transform: scaleY(0); transform-origin: 50% 12px; }
+                                70% { transform: scaleY(1.05); transform-origin: 50% 12px; }
+                                100% { transform: scaleY(1); transform-origin: 50% 12px; }
+                            }
+                            .axis { opacity: 1; }
+                            .left-bar {
+                                transform: scaleY(0);
+                                transform-origin: 50% 12px;
+                                animation: growLeftBar 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+                            }
+                            .right-bar {
+                                transform: scaleY(0);
+                                transform-origin: 50% 12px;
+                                animation: growRightBar 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
+                            }
+                        </style>
+                    </defs>
+                    <path class="axis" d="M2.25 2.25V14.25C2.25 14.6478 2.40804 15.0294 2.68934 15.3107C2.97064 15.592 3.35218 15.75 3.75 15.75H15.75" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g class="left-bar">
+                        <path d="M7.5 6H6C5.58579 6 5.25 6.33579 5.25 6.75V12C5.25 12.4142 5.58579 12.75 6 12.75H7.5C7.91421 12.75 8.25 12.4142 8.25 12V6.75C8.25 6.33579 7.91421 6 7.5 6Z" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <g class="right-bar">
+                        <path d="M13.5 3.75H12C11.5858 3.75 11.25 4.08579 11.25 4.5V12C11.25 12.4142 11.5858 12.75 12 12.75H13.5C13.9142 12.75 14.25 12.4142 14.25 12V4.5C14.25 4.08579 13.9142 3.75 13.5 3.75Z" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                </svg>
+                <div class="icon-name">竞品分析</div>
+            </div>
+
+            <div class="icon-item">
+                <svg width="80" height="80" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <style>
+                            @keyframes drawOuterRing {
+                                0% { stroke-dasharray: 40 40; stroke-dashoffset: -40; }
+                                75% { stroke-dasharray: 40 40; stroke-dashoffset: 0; }
+                                90% { stroke-dasharray: 40 40; stroke-dashoffset: -2; }
+                                100% { stroke-dasharray: 40 40; stroke-dashoffset: 0; }
+                            }
+                            @keyframes drawInnerRing {
+                                0% { stroke-dasharray: 25 25; stroke-dashoffset: 25; }
+                                75% { stroke-dasharray: 25 25; stroke-dashoffset: 0; }
+                                90% { stroke-dasharray: 25 25; stroke-dashoffset: -1; }
+                                100% { stroke-dasharray: 25 25; stroke-dashoffset: 0; }
+                            }
+                            @keyframes flagTranslate {
+                                0% { transform: translate(0, 0); }
+                                50% { transform: translate(0.5px, -1.5px); }
+                                83.33% { transform: translate(0.5px, -1.5px); }
+                                100% { transform: translate(0, 0); }
+                            }
+                            @keyframes flagRotate {
+                                0% { transform: rotate(0deg); }
+                                50% { transform: rotate(15deg); }
+                                83.33% { transform: rotate(15deg); }
+                                100% { transform: rotate(0deg); }
+                            }
+                            @keyframes ringScaleBounce {
+                                0% { transform: scale(1); }
+                                50% { transform: scale(1.06); }
+                                100% { transform: scale(1); }
+                            }
+                            .outer-ring {
+                                stroke-dasharray: 40 40;
+                                stroke-dashoffset: -40;
+                                animation: drawOuterRing 0.6s ease-in-out forwards, ringScaleBounce 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 1.6s forwards;
+                                transform-box: view-box;
+                                transform-origin: 9px 9px;
+                            }
+                            .inner-ring {
+                                stroke-dasharray: 25 25;
+                                stroke-dashoffset: 25;
+                                animation: drawInnerRing 0.6s ease-in-out 0.4s forwards, ringScaleBounce 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 1.6s forwards;
+                                transform-box: view-box;
+                                transform-origin: 9px 9px;
+                            }
+                            .flag-container { transform: translate(0, 0); }
+                            .flag-rotator {
+                                transform-box: view-box;
+                                transform-origin: 9px 9.75px;
+                            }
+                            .flag-translate { animation: flagTranslate 0.6s ease-in-out 1s forwards; }
+                            .flag-rotate { animation: flagRotate 0.6s ease-in-out 1s forwards; }
+                        </style>
+                    </defs>
+                    <path class="outer-ring" d="M15.4205 7.66623C15.8196 8.89634 15.857 10.2152 15.5281 11.4659C15.1992 12.7166 14.518 13.8466 13.5654 14.7212C12.6129 15.5959 11.4291 16.3786 10.1549 16.3998C8.88078 16.6211 7.56987 16.4717 6.37818 15.9694C5.18649 15.4671 4.16418 14.633 3.43288 13.5664C2.70157 12.4998 2.29207 11.2456 2.25307 9.95293C2.21408 8.66028 2.54723 7.38364 3.21291 6.2749C3.87859 5.16615 4.84876 4.27197 6.00801 3.69873" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="inner-ring" d="M6.00179 7.49707C5.62597 7.99734 5.3813 8.58369 5.29007 9.20271C5.19885 9.82173 5.26396 10.4537 5.47949 11.0412C5.69502 11.6286 6.0541 12.1527 6.52403 12.5658C6.99396 12.979 7.5598 13.268 8.16999 13.4064C8.78018 13.5449 9.41532 13.5285 10.0175 13.3588C10.6198 13.189 11.17 12.8712 11.6179 12.4344C12.0659 11.9976 12.3975 11.4556 12.5825 10.8578C12.7674 10.2601 12.7998 9.62556 12.6768 9.01207" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g class="flag-container flag-translate">
+                        <g class="flag-rotator flag-rotate">
+                            <path d="M9 9.75V1.5L15 4.5L9 7.5" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </g>
+                </svg>
+                <div class="icon-name">投标书</div>
+            </div>
+
+            <div class="icon-item">
+                <svg width="80" height="80" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <style>
+                            @keyframes penMoveLeft {
+                                0% { transform: translate(0, 0); }
+                                100% { transform: translate(-3.5px, 0); }
+                            }
+                            @keyframes penMoveRight {
+                                0% { transform: translate(-3.5px, 0); }
+                                100% { transform: translate(1px, 0); }
+                            }
+                            @keyframes penRotateTo94 {
+                                0% { transform: rotate(0deg); }
+                                100% { transform: rotate(-94deg); }
+                            }
+                            @keyframes penRotateBack {
+                                0% { transform: rotate(-94deg); }
+                                100% { transform: rotate(0deg); }
+                            }
+                            @keyframes lineExtend {
+                                0% { stroke-dasharray: 0 10; stroke-dashoffset: 0; opacity: 1; }
+                                100% { stroke-dasharray: 5 10; stroke-dashoffset: 0; opacity: 1; }
+                            }
+                            @keyframes lineRetract {
+                                0% { stroke-dasharray: 5 10; stroke-dashoffset: 0; }
+                                100% { stroke-dasharray: 0.75 10; stroke-dashoffset: 0; }
+                            }
+                            .document-static { opacity: 1; }
+                            .pen-static { opacity: 1; }
+                            .pen-container { transform: translate(0, 0); }
+                            .pen-rotator {
+                                transform-box: view-box;
+                                transform-origin: 12.82px 10.31px;
+                            }
+                            .pen-left { animation: penMoveLeft 0.2s ease-out 0.2s forwards; }
+                            .pen-right { animation: penMoveRight 0.4s linear 0.4s forwards; }
+                            .pen-rotate-to94 { animation: penRotateTo94 0.2s ease-out 1.2s forwards; }
+                            .pen-rotate-back { animation: penRotateBack 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards; }
+                            .signature-line {
+                                stroke-dasharray: 0 10;
+                                stroke-dashoffset: 0;
+                                opacity: 0;
+                                animation: lineExtend 0.4s linear 0.4s forwards, lineRetract 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+                            }
+                        </style>
+                    </defs>
+                    <g class="document-static">
+                        <rect x="6" y="1.5" width="6" height="3" rx="0.75" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 4.5C15 3.67157 14.3284 3 13.5 3H12M15 15C15 15.8284 14.3284 16.5 13.5 16.5H4.5C3.67157 16.5 3 15.8284 3 15V4.5C3 3.67157 3.67157 3 4.5 3H6" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <path class="signature-line" d="M6 13.5H11" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g class="pen-container pen-left pen-right">
+                        <g class="pen-rotator pen-rotate-to94 pen-rotate-back">
+                            <path class="pen-static" d="M13.8807 7.1256C14.4665 6.53982 15.4163 6.53982 16.0021 7.1256C16.5879 7.71139 16.5879 8.66114 16.0021 9.24692L12.2903 12.9587L9.63811 13.4896L10.169 10.8374L13.8807 7.1256Z" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </g>
+                </svg>
+                <div class="icon-name">商业合同</div>
+            </div>
+
+            <div class="icon-item">
+                <svg width="80" height="80" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <style>
+                            @keyframes drawLeftCircle {
+                                0% { stroke-dasharray: 20 20; stroke-dashoffset: -20; }
+                                75% { stroke-dasharray: 20 20; stroke-dashoffset: 0; }
+                                90% { stroke-dasharray: 20 20; stroke-dashoffset: -1; }
+                                100% { stroke-dasharray: 20 20; stroke-dashoffset: 0; }
+                            }
+                            @keyframes growLine {
+                                0% { transform: scaleX(0); transform-origin: 3.375px 9px; }
+                                70% { transform: scaleX(1.05); transform-origin: 3.375px 9px; }
+                                100% { transform: scaleX(1); transform-origin: 3.375px 9px; }
+                            }
+                            @keyframes bounceRightCircle {
+                                0% { transform: scale(0); transform-origin: 14.625px 9px; }
+                                70% { transform: scale(1.1); transform-origin: 14.625px 9px; }
+                                100% { transform: scale(1); transform-origin: 14.625px 9px; }
+                            }
+                            .left-circle {
+                                stroke-dasharray: 20 20;
+                                stroke-dashoffset: -20;
+                                animation: drawLeftCircle 0.8s ease-in-out forwards;
+                            }
+                            .connecting-line {
+                                animation: growLine 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
+                            }
+                            .right-circle {
+                                animation: bounceRightCircle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1s forwards;
+                            }
+                        </style>
+                    </defs>
+                    <circle class="left-circle" cx="3.375" cy="9" r="2.625" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="connecting-line" d="M6 9H12" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle class="right-circle" cx="14.625" cy="9" r="2.625" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="icon-name">产品架构</div>
+            </div>
+
+            <div class="icon-item">
+                <svg width="80" height="80" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <style>
+                            @keyframes leftBracketBounce {
+                                0% { transform: translateX(-2px); }
+                                50% { transform: translateX(1px); }
+                                100% { transform: translateX(0); }
+                            }
+                            @keyframes rightBracketBounce {
+                                0% { transform: translateX(2px); }
+                                50% { transform: translateX(-1px); }
+                                100% { transform: translateX(0); }
+                            }
+                            .left-bracket {
+                                animation: leftBracketBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards;
+                            }
+                            .right-bracket {
+                                animation: rightBracketBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards;
+                            }
+                            .content { opacity: 1; }
+                        </style>
+                    </defs>
+                    <g class="left-bracket">
+                        <path d="M6 3.375V6.375C6 6.72018 5.89464 7.05194 5.71154 7.30499C5.52843 7.55804 5.27608 7.72152 5 7.76875L4.375 7.875L5 7.98125C5.27608 8.02848 5.52843 8.19196 5.71154 8.44501C5.89464 8.69806 6 9.02982 6 9.375V14.625" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <g class="content">
+                        <path d="M9 5.25H9.0075" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 9H9.0075" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 12.75H9.0075" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <g class="right-bracket">
+                        <path d="M12 3.375V6.375C12 6.72018 12.1054 7.05194 12.2885 7.30499C12.4716 7.55804 12.7239 7.72152 13 7.76875L13.625 7.875L13 7.98125C12.7239 8.02848 12.4716 8.19196 12.2885 8.44501C12.1054 8.69806 12 9.02982 12 9.375V14.625" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                </svg>
+                <div class="icon-name">技术架构</div>
+            </div>
+
+            <div class="icon-item">
+                <svg width="80" height="80" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <style>
+                            @keyframes drawCapTop {
+                                0% { stroke-dasharray: 50 50; stroke-dashoffset: -50; }
+                                75% { stroke-dasharray: 50 50; stroke-dashoffset: 0; }
+                                90% { stroke-dasharray: 50 50; stroke-dashoffset: -2; }
+                                100% { stroke-dasharray: 50 50; stroke-dashoffset: 0; }
+                            }
+                            @keyframes drawCapBottom {
+                                0% { stroke-dasharray: 30 30; stroke-dashoffset: -30; }
+                                75% { stroke-dasharray: 30 30; stroke-dashoffset: 0; }
+                                90% { stroke-dasharray: 30 30; stroke-dashoffset: -1; }
+                                100% { stroke-dasharray: 30 30; stroke-dashoffset: 0; }
+                            }
+                            @keyframes drawTassel {
+                                0% { stroke-dasharray: 10 10; stroke-dashoffset: -10; }
+                                75% { stroke-dasharray: 10 10; stroke-dashoffset: 0; }
+                                90% { stroke-dasharray: 10 10; stroke-dashoffset: -1; }
+                                100% { stroke-dasharray: 10 10; stroke-dashoffset: 0; }
+                            }
+                            @keyframes wholeScaleBounce {
+                                0% { transform: scale(1); }
+                                85% { transform: scale(1); }
+                                92% { transform: scale(1.04); }
+                                100% { transform: scale(1); }
+                            }
+                            .cap-top {
+                                stroke-dasharray: 50 50;
+                                stroke-dashoffset: -50;
+                                animation: drawCapTop 1.2s ease-in-out forwards;
+                            }
+                            .cap-bottom {
+                                stroke-dasharray: 30 30;
+                                stroke-dashoffset: -30;
+                                animation: drawCapBottom 1.2s ease-in-out 0.3s forwards;
+                            }
+                            .tassel {
+                                stroke-dasharray: 10 10;
+                                stroke-dashoffset: -10;
+                                animation: drawTassel 1.2s ease-in-out 0.6s forwards;
+                            }
+                            .grad-cap {
+                                transform-box: view-box;
+                                transform-origin: 9px 9px;
+                                animation: wholeScaleBounce 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                            }
+                        </style>
+                    </defs>
+                    <g class="grad-cap">
+                        <path class="cap-top" d="M16.0651 8.19177C16.1994 8.13254 16.3133 8.03522 16.3928 7.91187C16.4723 7.78852 16.5139 7.64456 16.5123 7.49782C16.5108 7.35108 16.4663 7.20801 16.3843 7.08633C16.3022 6.96465 16.1863 6.86971 16.0508 6.81327L9.62259 3.88527C9.42717 3.79613 9.21488 3.75 9.00009 3.75C8.7853 3.75 8.57301 3.79613 8.37759 3.88527L1.95009 6.81027C1.81657 6.86875 1.70298 6.96487 1.62322 7.08688C1.54346 7.20889 1.50098 7.3515 1.50098 7.49727C1.50098 7.64304 1.54346 7.78565 1.62322 7.90766C1.70298 8.02967 1.81657 8.12579 1.95009 8.18427L8.37759 11.1153C8.57301 11.2044 8.7853 11.2505 9.00009 11.2505C9.21488 11.2505 9.42717 11.2044 9.62259 11.1153L16.0651 8.19177Z" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="cap-bottom" d="M4.5 9.375V12C4.5 12.5967 4.97411 13.169 5.81802 13.591C6.66193 14.0129 7.80653 14.25 9 14.25C10.1935 14.25 11.3381 14.0129 12.182 13.591C13.0259 13.169 13.5 12.5967 13.5 12V9.375" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="tassel" d="M16.5002 7.5V12" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                </svg>
+                <div class="icon-name">培训课程</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
