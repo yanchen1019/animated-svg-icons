@@ -41,8 +41,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
             position: relative;
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: background-color 0.2s ease;
+        }
+
+        .icon-item:hover {
+            background-color: #f3f4f6;
         }
 
         .icon-wrapper {
@@ -63,12 +70,14 @@
         /* 静态图标默认显示 */
         .static-icon {
             opacity: 1;
+            transition: opacity 0.2s ease;
         }
 
-        /* 动画图标默认隐藏，hover时显示 */
+        /* 动画图标默认隐藏 */
         .animated-icon {
             opacity: 0;
             pointer-events: none;
+            transition: opacity 0.2s ease;
         }
 
         .icon-item:hover .static-icon {
@@ -78,6 +87,25 @@
         .icon-item:hover .animated-icon {
             opacity: 1;
             pointer-events: auto;
+        }
+
+        /* hover时重新触发动画 */
+        .icon-item:hover .animated-icon * {
+            animation-name: none !important;
+        }
+
+        .icon-item:hover .animated-icon * {
+            animation-play-state: running !important;
+        }
+
+        /* 强制重新播放动画的技巧 */
+        .icon-item:hover .animated-icon {
+            animation: iconReveal 0s forwards;
+        }
+
+        @keyframes iconReveal {
+            0% { content: ''; }
+            100% { content: ''; }
         }
 
         .icon-name {
@@ -116,6 +144,11 @@
             .icon-name {
                 font-size: 10px;
             }
+
+            .icon-item {
+                padding: 10px 12px;
+                gap: 12px;
+            }
         }
     </style>
 </head>
@@ -150,11 +183,16 @@
                                 }
                                 .bar {
                                     transform-origin: 50% 15.75px;
-                                    animation: growBar 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                                    transform: scaleY(0);
                                 }
                                 .trend-line {
                                     stroke-dasharray: 60 60;
                                     stroke-dashoffset: -60;
+                                }
+                                .animated-icon .bar {
+                                    animation: growBar 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                                }
+                                .animated-icon .trend-line {
                                     animation: drawTrendLine 1.5s ease-in-out 0.4s forwards;
                                 }
                             </style>
@@ -195,11 +233,15 @@
                                 .left-bar {
                                     transform: scaleY(0);
                                     transform-origin: 50% 12px;
-                                    animation: growLeftBar 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
                                 }
                                 .right-bar {
                                     transform: scaleY(0);
                                     transform-origin: 50% 12px;
+                                }
+                                .animated-icon .left-bar {
+                                    animation: growLeftBar 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+                                }
+                                .animated-icon .right-bar {
                                     animation: growRightBar 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
                                 }
                             </style>
@@ -259,24 +301,32 @@
                                 .outer-ring {
                                     stroke-dasharray: 40 40;
                                     stroke-dashoffset: -40;
-                                    animation: drawOuterRing 0.6s ease-in-out forwards, ringScaleBounce 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 1.6s forwards;
-                                    transform-box: view-box;
-                                    transform-origin: 9px 9px;
                                 }
                                 .inner-ring {
                                     stroke-dasharray: 25 25;
                                     stroke-dashoffset: 25;
-                                    animation: drawInnerRing 0.6s ease-in-out 0.4s forwards, ringScaleBounce 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 1.6s forwards;
-                                    transform-box: view-box;
-                                    transform-origin: 9px 9px;
                                 }
                                 .flag-container { transform: translate(0, 0); }
                                 .flag-rotator {
                                     transform-box: view-box;
                                     transform-origin: 9px 9.75px;
                                 }
-                                .flag-translate { animation: flagTranslate 0.6s ease-in-out 1s forwards; }
-                                .flag-rotate { animation: flagRotate 0.6s ease-in-out 1s forwards; }
+                                .animated-icon .outer-ring {
+                                    animation: drawOuterRing 0.6s ease-in-out forwards, ringScaleBounce 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 1.6s forwards;
+                                    transform-box: view-box;
+                                    transform-origin: 9px 9px;
+                                }
+                                .animated-icon .inner-ring {
+                                    animation: drawInnerRing 0.6s ease-in-out 0.4s forwards, ringScaleBounce 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 1.6s forwards;
+                                    transform-box: view-box;
+                                    transform-origin: 9px 9px;
+                                }
+                                .animated-icon .flag-translate {
+                                    animation: flagTranslate 0.6s ease-in-out 1s forwards;
+                                }
+                                .animated-icon .flag-rotate {
+                                    animation: flagRotate 0.6s ease-in-out 1s forwards;
+                                }
                             </style>
                         </defs>
                         <path class="outer-ring" d="M15.4205 7.66623C15.8196 8.89634 15.857 10.2152 15.5281 11.4659C15.1992 12.7166 14.518 13.8466 13.5654 14.7212C12.6129 15.5959 11.4291 16.3786 10.1549 16.3998C8.88078 16.6211 7.56987 16.4717 6.37818 15.9694C5.18649 15.4671 4.16418 14.633 3.43288 13.5664C2.70157 12.4998 2.29207 11.2456 2.25307 9.95293C2.21408 8.66028 2.54723 7.38364 3.21291 6.2749C3.87859 5.16615 4.84876 4.27197 6.00801 3.69873" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
@@ -334,14 +384,24 @@
                                     transform-box: view-box;
                                     transform-origin: 12.82px 10.31px;
                                 }
-                                .pen-left { animation: penMoveLeft 0.2s ease-out 0.2s forwards; }
-                                .pen-right { animation: penMoveRight 0.4s linear 0.4s forwards; }
-                                .pen-rotate-to94 { animation: penRotateTo94 0.2s ease-out 1.2s forwards; }
-                                .pen-rotate-back { animation: penRotateBack 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards; }
                                 .signature-line {
                                     stroke-dasharray: 0 10;
                                     stroke-dashoffset: 0;
                                     opacity: 0;
+                                }
+                                .animated-icon .pen-left {
+                                    animation: penMoveLeft 0.2s ease-out 0.2s forwards;
+                                }
+                                .animated-icon .pen-right {
+                                    animation: penMoveRight 0.4s linear 0.4s forwards;
+                                }
+                                .animated-icon .pen-rotate-to94 {
+                                    animation: penRotateTo94 0.2s ease-out 1.2s forwards;
+                                }
+                                .animated-icon .pen-rotate-back {
+                                    animation: penRotateBack 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+                                }
+                                .animated-icon .signature-line {
                                     animation: lineExtend 0.4s linear 0.4s forwards, lineRetract 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
                                 }
                             </style>
@@ -395,20 +455,28 @@
                                 .left-circle {
                                     stroke-dasharray: 12 12;
                                     stroke-dashoffset: 12;
-                                    animation: drawLeftCircle 0.5s ease-out 0.3s forwards;
                                 }
                                 .vertical-line {
                                     stroke-dasharray: 8 8;
                                     stroke-dashoffset: 8;
-                                    animation: drawVerticalLine 0.4s ease-out 0.8s forwards;
                                 }
                                 .right-circle {
                                     opacity: 0;
-                                    animation: rightCircleBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
                                 }
                                 .arc-line {
                                     stroke-dasharray: 20 20;
                                     stroke-dashoffset: 20;
+                                }
+                                .animated-icon .left-circle {
+                                    animation: drawLeftCircle 0.5s ease-out 0.3s forwards;
+                                }
+                                .animated-icon .vertical-line {
+                                    animation: drawVerticalLine 0.4s ease-out 0.8s forwards;
+                                }
+                                .animated-icon .right-circle {
+                                    animation: rightCircleBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+                                }
+                                .animated-icon .arc-line {
                                     animation: drawArcLine 0.8s ease-out 1.2s forwards;
                                 }
                             </style>
@@ -451,10 +519,14 @@
                                 .doc-static { opacity: 1; }
                                 .left-bracket {
                                     opacity: 1;
-                                    animation: leftBracketBounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
                                 }
                                 .right-bracket {
                                     opacity: 1;
+                                }
+                                .animated-icon .left-bracket {
+                                    animation: leftBracketBounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+                                }
+                                .animated-icon .right-bracket {
                                     animation: rightBracketBounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
                                 }
                             </style>
@@ -507,21 +579,29 @@
                                 .cap-top {
                                     stroke-dasharray: 50 50;
                                     stroke-dashoffset: -50;
-                                    animation: drawCapTop 1.2s ease-in-out forwards;
                                 }
                                 .cap-bottom {
                                     stroke-dasharray: 30 30;
                                     stroke-dashoffset: -30;
-                                    animation: drawCapBottom 1.2s ease-in-out 0.3s forwards;
                                 }
                                 .tassel {
                                     stroke-dasharray: 10 10;
                                     stroke-dashoffset: -10;
-                                    animation: drawTassel 1.2s ease-in-out 0.6s forwards;
                                 }
                                 .grad-cap {
                                     transform-box: view-box;
                                     transform-origin: 9px 9px;
+                                }
+                                .animated-icon .cap-top {
+                                    animation: drawCapTop 1.2s ease-in-out forwards;
+                                }
+                                .animated-icon .cap-bottom {
+                                    animation: drawCapBottom 1.2s ease-in-out 0.3s forwards;
+                                }
+                                .animated-icon .tassel {
+                                    animation: drawTassel 1.2s ease-in-out 0.6s forwards;
+                                }
+                                .animated-icon .grad-cap {
                                     animation: wholeScaleBounce 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
                                 }
                             </style>
