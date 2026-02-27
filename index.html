@@ -554,42 +554,49 @@
     </div>
     <script>
         // 确保hover效果生效并重新触发动画
-        document.addEventListener('DOMContentLoaded', function() {
-            const iconItems = document.querySelectorAll('.icon-item');
+        (function() {
+            // Store templates BEFORE DOM loads to capture pre-animated state
+            const iconTemplates = [];
 
-            iconItems.forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.backgroundColor = '#f3f4f6';
-                    const staticIcon = this.querySelector('.static-icon');
-                    const animatedIcon = this.querySelector('.animated-icon');
-                    if (staticIcon) staticIcon.style.opacity = '0';
+            document.addEventListener('DOMContentLoaded', function() {
+                const iconItems = document.querySelectorAll('.icon-item');
+
+                iconItems.forEach((item, index) => {
+                    const animatedIcon = item.querySelector('.animated-icon');
                     if (animatedIcon) {
-                        animatedIcon.style.opacity = '1';
-
-                        // Reset all animations by removing and re-adding animation property
-                        const animatedElements = animatedIcon.querySelectorAll('[class*="bar"], [class*="line"], [class*="circle"], [class*="ring"], [class*="flag"], [class*="pen"], [class*="tassel"], [class*="cap"], [class*="bracket"], [class*="arc"], [class*="signature"], .grad-cap');
-                        animatedElements.forEach(el => {
-                            const computedStyle = window.getComputedStyle(el);
-                            const animation = computedStyle.animation;
-                            // Reset animation
-                            el.style.animation = 'none';
-                            // Force reflow
-                            void el.offsetWidth;
-                            // Restore animation
-                            el.style.animation = '';
-                        });
+                        // Store the original HTML as template
+                        iconTemplates[index] = animatedIcon.outerHTML;
                     }
                 });
 
-                item.addEventListener('mouseleave', function() {
-                    this.style.backgroundColor = 'transparent';
-                    const staticIcon = this.querySelector('.static-icon');
-                    const animatedIcon = this.querySelector('.animated-icon');
-                    if (staticIcon) staticIcon.style.opacity = '1';
-                    if (animatedIcon) animatedIcon.style.opacity = '0';
+                iconItems.forEach((item, index) => {
+                    item.addEventListener('mouseenter', function() {
+                        this.style.backgroundColor = '#f3f4f6';
+                        const staticIcon = this.querySelector('.static-icon');
+                        const oldAnimatedIcon = this.querySelector('.animated-icon');
+                        if (staticIcon) staticIcon.style.opacity = '0';
+                        if (oldAnimatedIcon && iconTemplates[index]) {
+                            const wrapper = this.querySelector('.icon-wrapper');
+                            // Create new element from template HTML
+                            wrapper.insertAdjacentHTML('beforeend', iconTemplates[index]);
+                            const newAnimatedIcon = wrapper.querySelector('.animated-icon:last-of-type');
+                            if (newAnimatedIcon) {
+                                newAnimatedIcon.style.opacity = '1';
+                                oldAnimatedIcon.remove();
+                            }
+                        }
+                    });
+
+                    item.addEventListener('mouseleave', function() {
+                        this.style.backgroundColor = 'transparent';
+                        const staticIcon = this.querySelector('.static-icon');
+                        const animatedIcon = this.querySelector('.animated-icon');
+                        if (staticIcon) staticIcon.style.opacity = '1';
+                        if (animatedIcon) animatedIcon.style.opacity = '0';
+                    });
                 });
             });
-        });
+        })();
     </script>
 </body>
 </html>
