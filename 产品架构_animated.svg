@@ -1,0 +1,84 @@
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes drawLeftCircle {
+        0% {
+          stroke-dasharray: 0 12;
+          stroke-dashoffset: 12;
+        }
+        100% {
+          stroke-dasharray: 12 12;
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes drawVerticalLine {
+        0% {
+          stroke-dasharray: 0 8;
+          stroke-dashoffset: 8;
+        }
+        100% {
+          stroke-dasharray: 8 8;
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes rightCircleBounce {
+        0% {
+          opacity: 0;
+          transform: translateX(8px) scale(0);
+          transform-origin: center;
+        }
+        60% {
+          opacity: 1;
+          transform: translateX(-1px) scale(1.08);
+          transform-origin: center;
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+          transform-origin: center;
+        }
+      }
+      @keyframes drawArcLine {
+        0% {
+          stroke-dasharray: 0 20;
+          stroke-dashoffset: 20;
+        }
+        100% {
+          stroke-dasharray: 20 20;
+          stroke-dashoffset: 0;
+        }
+      }
+      .folder-static {
+        opacity: 1;
+      }
+      .left-circle {
+        stroke-dasharray: 12 12;
+        stroke-dashoffset: 12;
+        animation: drawLeftCircle 0.5s ease-out 0.3s forwards;
+      }
+      .vertical-line {
+        stroke-dasharray: 8 8;
+        stroke-dashoffset: 8;
+        animation: drawVerticalLine 0.4s ease-out 0.8s forwards;
+      }
+      .right-circle {
+        opacity: 0;
+        animation: rightCircleBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+      }
+      .arc-line {
+        stroke-dasharray: 20 20;
+        stroke-dashoffset: 20;
+        animation: drawArcLine 0.8s ease-out 1.2s forwards;
+      }
+    </style>
+  </defs>
+  <g>
+    <g class="folder-static">
+      <path d="M6.75 15H3C2.17157 15 1.5 14.3284 1.5 13.5V3.75C1.5 2.92157 2.17157 2.25 3 2.25H5.94722C6.44875 2.25 6.9171 2.50065 7.1953 2.91795L7.8047 3.83205C8.0829 4.24935 8.55125 4.5 9.05278 4.5H15C15.8284 4.5 16.5 5.17157 16.5 6V9.75" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <circle class="left-circle" cx="9.75" cy="9" r="1.5" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path class="vertical-line" d="M9.75 10.875V16.5" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle class="right-circle" cx="15" cy="14.25" r="1.5" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path class="arc-line" d="M9.75 10.5C9.75 12.5711 11.4289 14.25 13.5 14.25" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

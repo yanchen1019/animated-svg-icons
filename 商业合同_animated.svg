@@ -1,0 +1,133 @@
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* 钢笔位移动画 */
+      @keyframes penMoveLeft {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(-3.5px, 0); }
+      }
+
+      @keyframes penMoveRight {
+        0% { transform: translate(-3.5px, 0); }
+        100% { transform: translate(1px, 0); }
+      }
+
+      /* 钢笔旋转第一阶段: 转到-94度 */
+      @keyframes penRotateTo94 {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(-94deg); }
+      }
+
+      /* 钢笔旋转第二阶段: 从-94度回弹复位到0度 */
+      @keyframes penRotateBack {
+        0% { transform: rotate(-94deg); }
+        100% { transform: rotate(0deg); }
+      }
+
+      /* 签名线延伸动画：配合钢笔笔尖 */
+      @keyframes lineExtend {
+        0% {
+          stroke-dasharray: 0 10;
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+        100% {
+          stroke-dasharray: 5 10;
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+      }
+
+      /* 签名线回弹动画：有弹动效果 */
+      @keyframes lineRetract {
+        0% {
+          stroke-dasharray: 5 10;
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dasharray: 0.75 10;
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .document-static {
+        opacity: 1;
+      }
+
+      .pen-static {
+        opacity: 1;
+      }
+
+      /* 钢笔容器: 负责位移 */
+      .pen-container {
+        transform: translate(0, 0);
+      }
+
+      /* 钢笔旋转层: 负责旋转，使用view-box坐标系统的绝对坐标 */
+      .pen-rotator {
+        transform-box: view-box;
+        /* 钢笔几何中心: x=(9.64+16)/2=12.82, y=(7.13+13.49)/2=10.31 */
+        transform-origin: 12.82px 10.31px;
+      }
+
+      /* 0.2-0.4s: 钢笔左移 */
+      .pen-left {
+        animation: penMoveLeft 0.2s ease-out 0.2s forwards;
+      }
+
+      /* 0.4-0.8s: 钢笔右移 */
+      .pen-right {
+        animation: penMoveRight 0.4s linear 0.4s forwards;
+      }
+
+      /* 1.2-1.4s: 钢笔转到-94度 */
+      .pen-rotate-to94 {
+        animation: penRotateTo94 0.2s ease-out 1.2s forwards;
+      }
+
+      /* 1.4-1.9s: 钢笔从-94度回弹复位 */
+      .pen-rotate-back {
+        animation: penRotateBack 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+      }
+
+      /* 签名线动画：延伸 + 停留 + 回弹 */
+      .signature-line {
+        stroke-dasharray: 0 10;
+        stroke-dashoffset: 0;
+        opacity: 0;
+        animation:
+          lineExtend 0.4s linear 0.4s forwards,
+          lineRetract 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+      }
+    </style>
+  </defs>
+  <g>
+    <!-- 静态内容: 文档轮廓 + 夹子 -->
+    <g class="document-static">
+      <rect x="6" y="1.5" width="6" height="3" rx="0.75" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 4.5C15 3.67157 14.3284 3 13.5 3H12M15 15C15 15.8284 14.3284 16.5 13.5 16.5H4.5C3.67157 16.5 3 15.8284 3 15V4.5C3 3.67157 3.67157 3 4.5 3H6" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 签名线: 延伸 → 停留展示 → 回弹缩回 -->
+    <path class="signature-line"
+          d="M6 13.5H11"
+          stroke="black"
+          stroke-opacity="0.9"
+          stroke-width="1.125"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+    <!-- 钢笔: 左移 → 右移（停留）→ 旋转 -->
+    <g class="pen-container pen-left pen-right">
+      <g class="pen-rotator pen-rotate-to94 pen-rotate-back">
+        <path class="pen-static"
+              d="M13.8807 7.1256C14.4665 6.53982 15.4163 6.53982 16.0021 7.1256C16.5879 7.71139 16.5879 8.66114 16.0021 9.24692L12.2903 12.9587L9.63811 13.4896L10.169 10.8374L13.8807 7.1256Z"
+              stroke="black"
+              stroke-opacity="0.9"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </g>
+    </g>
+  </g>
+</svg>

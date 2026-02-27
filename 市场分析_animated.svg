@@ -1,0 +1,49 @@
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes growBar {
+        0% {
+          transform: scaleY(0);
+        }
+        100% {
+          transform: scaleY(1);
+        }
+      }
+      @keyframes drawTrendLine {
+        0% {
+          stroke-dasharray: 60 60;
+          stroke-dashoffset: -60;
+        }
+        75% {
+          stroke-dasharray: 60 60;
+          stroke-dashoffset: 0;
+        }
+        90% {
+          stroke-dasharray: 60 60;
+          stroke-dashoffset: -2;
+        }
+        100% {
+          stroke-dasharray: 60 60;
+          stroke-dashoffset: 0;
+        }
+      }
+      .bar {
+        transform-origin: 50% 15.75px;
+        animation: growBar 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+      .trend-line {
+        stroke-dasharray: 60 60;
+        stroke-dashoffset: -60;
+        animation: drawTrendLine 1.5s ease-in-out 0.4s forwards;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="bar" d="M9 12V15.75" stroke="black" stroke-opacity="0.9" style="stroke:black;stroke-opacity:0.9;" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="bar" d="M12 10.5V15.75" stroke="black" stroke-opacity="0.9" style="stroke:black;stroke-opacity:0.9;" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="bar" d="M15 7.5V15.75" stroke="black" stroke-opacity="0.9" style="stroke:black;stroke-opacity:0.9;" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="bar" d="M3 13.5V15.75" stroke="black" stroke-opacity="0.9" style="stroke:black;stroke-opacity:0.9;" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="bar" d="M6 10.5V15.75" stroke="black" stroke-opacity="0.9" style="stroke:black;stroke-opacity:0.9;" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="trend-line" d="M16.5 2.25L10.0155 8.7345C9.98067 8.76942 9.93928 8.79713 9.89372 8.81603C9.84817 8.83494 9.79933 8.84467 9.75 8.84467C9.70067 8.84467 9.65183 8.83494 9.60628 8.81603C9.56072 8.79713 9.51933 8.76942 9.4845 8.7345L7.0155 6.2655C6.94518 6.1952 6.84981 6.1557 6.75037 6.1557C6.65094 6.1557 6.55557 6.1952 6.48525 6.2655L1.5 11.25" stroke="black" stroke-opacity="0.9" style="stroke:black;stroke-opacity:0.9;" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
