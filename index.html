@@ -585,6 +585,9 @@
                         // Replace old with new
                         animatedIcon.remove();
                         wrapper.appendChild(newAnimatedIcon);
+
+                        // Force reflow to trigger CSS animations
+                        void newAnimatedIcon.offsetWidth;
                     }
                 });
 
