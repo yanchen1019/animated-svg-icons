@@ -557,37 +557,27 @@
         document.addEventListener('DOMContentLoaded', function() {
             const iconItems = document.querySelectorAll('.icon-item');
 
-            // Store original templates for each animated icon
-            iconItems.forEach(item => {
-                const animatedIcon = item.querySelector('.animated-icon');
-                if (animatedIcon) {
-                    // Store the original outerHTML as a template
-                    item.dataset.animatedTemplate = animatedIcon.outerHTML;
-                }
-            });
-
             iconItems.forEach(item => {
                 item.addEventListener('mouseenter', function() {
                     this.style.backgroundColor = '#f3f4f6';
                     const staticIcon = this.querySelector('.static-icon');
-                    let animatedIcon = this.querySelector('.animated-icon');
+                    const animatedIcon = this.querySelector('.animated-icon');
                     if (staticIcon) staticIcon.style.opacity = '0';
                     if (animatedIcon) {
-                        // Create new animated icon from template
-                        const wrapper = this.querySelector('.icon-wrapper');
-                        const newAnimatedIcon = new DOMParser().parseFromString(
-                            this.dataset.animatedTemplate,
-                            'image/svg+xml'
-                        ).documentElement;
-                        newAnimatedIcon.classList.add('animated-icon');
-                        newAnimatedIcon.style.opacity = '1';
+                        animatedIcon.style.opacity = '1';
 
-                        // Replace old with new
-                        animatedIcon.remove();
-                        wrapper.appendChild(newAnimatedIcon);
-
-                        // Force reflow to trigger CSS animations
-                        void newAnimatedIcon.offsetWidth;
+                        // Reset all animations by removing and re-adding animation property
+                        const animatedElements = animatedIcon.querySelectorAll('[class*="bar"], [class*="line"], [class*="circle"], [class*="ring"], [class*="flag"], [class*="pen"], [class*="tassel"], [class*="cap"], [class*="bracket"], [class*="arc"], [class*="signature"], .grad-cap');
+                        animatedElements.forEach(el => {
+                            const computedStyle = window.getComputedStyle(el);
+                            const animation = computedStyle.animation;
+                            // Reset animation
+                            el.style.animation = 'none';
+                            // Force reflow
+                            void el.offsetWidth;
+                            // Restore animation
+                            el.style.animation = '';
+                        });
                     }
                 });
 
