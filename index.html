@@ -566,7 +566,7 @@
         </div>
     </div>
     <script>
-        // 确保hover效果生效
+        // 确保hover效果生效并重新触发动画
         document.addEventListener('DOMContentLoaded', function() {
             const iconItems = document.querySelectorAll('.icon-item');
 
@@ -578,13 +578,9 @@
                     if (staticIcon) staticIcon.style.opacity = '0';
                     if (animatedIcon) {
                         animatedIcon.style.opacity = '1';
-                        // 重新触发动画
-                        animatedIcon.querySelectorAll('*').forEach(el => {
-                            el.style.animationName = 'none';
-                            setTimeout(() => {
-                                el.style.animationName = '';
-                            }, 10);
-                        });
+                        // Clone and replace to restart animations
+                        const newAnimatedIcon = animatedIcon.cloneNode(true);
+                        animatedIcon.parentNode.replaceChild(newAnimatedIcon, animatedIcon);
                     }
                 });
 
