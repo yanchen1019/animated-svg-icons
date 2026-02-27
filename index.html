@@ -305,7 +305,7 @@
                     <svg class="static-icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="6" y="1.5" width="6" height="3" rx="0.75" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M15 4.5C15 3.67157 14.3284 3 13.5 3H12M15 15C15 15.8284 14.3284 16.5 13.5 16.5H4.5C3.67157 16.5 3 15.8284 3 15V4.5C3 3.67157 3.67157 3 4.5 3H6" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6 13.5H11" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 13.5H6.75" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M13.8807 7.1256C14.4665 6.53982 15.4163 6.53982 16.0021 7.1256C16.5879 7.71139 16.5879 8.66114 16.0021 9.24692L12.2903 12.9587L9.63811 13.4896L10.169 10.8374L13.8807 7.1256Z" stroke="black" stroke-opacity="0.9" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <svg class="animated-icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -343,22 +343,22 @@
                                     transform-origin: 12.82px 10.31px;
                                 }
                                 .pen-left {
-                                    animation: penMoveLeft 0.4s ease-out forwards;
+                                    animation: penMoveLeft 0.2s ease-out 0.2s forwards;
                                 }
                                 .pen-right {
-                                    animation: penMoveRight 0.4s ease-out 0.4s forwards;
+                                    animation: penMoveRight 0.4s linear 0.4s forwards;
                                 }
                                 .pen-rotate-to94 {
-                                    animation: penRotateTo94 0.4s ease-out 0.8s forwards;
+                                    animation: penRotateTo94 0.2s ease-out 1.2s forwards;
                                 }
                                 .pen-rotate-back {
-                                    animation: penRotateBack 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+                                    animation: penRotateBack 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
                                 }
                                 .signature-line {
                                     stroke-dasharray: 0 10;
                                     stroke-dashoffset: 0;
                                     opacity: 0;
-                                    animation: lineExtend 0.4s ease-out 1s forwards, lineRetract 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+                                    animation: lineExtend 0.4s linear 0.4s forwards, lineRetract 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
                                 }
                             </style>
                         </defs>
@@ -410,21 +410,21 @@
                                 .left-circle {
                                     stroke-dasharray: 12 12;
                                     stroke-dashoffset: 12;
-                                    animation: drawLeftCircle 0.5s ease-in-out forwards;
+                                    animation: drawLeftCircle 0.5s ease-out 0.3s forwards;
                                 }
                                 .vertical-line {
                                     stroke-dasharray: 8 8;
                                     stroke-dashoffset: 8;
-                                    animation: drawVerticalLine 0.4s ease-in-out 0.5s forwards;
+                                    animation: drawVerticalLine 0.4s ease-out 0.8s forwards;
                                 }
                                 .right-circle {
                                     opacity: 0;
-                                    animation: rightCircleBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
+                                    animation: rightCircleBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
                                 }
                                 .arc-line {
                                     stroke-dasharray: 20 20;
                                     stroke-dashoffset: 20;
-                                    animation: drawArcLine 0.5s ease-in-out 0.7s forwards;
+                                    animation: drawArcLine 0.8s ease-out 1.2s forwards;
                                 }
                             </style>
                         </defs>
