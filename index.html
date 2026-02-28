@@ -453,40 +453,73 @@
                     <svg class="animated-icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <style>
-                                @keyframes bracketMoveToCenter {
-                                    0% { transform: translateX(0); }
-                                    100% { transform: translateX(2px); }
+                                @keyframes leftBracketDraw {
+                                    0% {
+                                        opacity: 0;
+                                        stroke-dasharray: 0 12;
+                                        stroke-dashoffset: 0;
+                                        transform: translateX(2px);
+                                    }
+                                    100% {
+                                        opacity: 1;
+                                        stroke-dasharray: 12 12;
+                                        stroke-dashoffset: 0;
+                                        transform: translateX(2px);
+                                    }
+                                }
+                                @keyframes rightBracketDraw {
+                                    0% {
+                                        opacity: 0;
+                                        stroke-dasharray: 0 12;
+                                        stroke-dashoffset: 0;
+                                        transform: translateX(2px);
+                                    }
+                                    100% {
+                                        opacity: 1;
+                                        stroke-dasharray: 12 12;
+                                        stroke-dashoffset: 0;
+                                        transform: translateX(2px);
+                                    }
                                 }
                                 @keyframes leftBracketSpread {
                                     0% { transform: translateX(2px); }
-                                    50% { transform: translateX(-3px); }
-                                    100% { transform: translateX(-1px); }
+                                    50% { transform: translateX(0px); }
+                                    100% { transform: translateX(0.5px); }
                                 }
                                 @keyframes rightBracketSpread {
                                     0% { transform: translateX(2px); }
-                                    50% { transform: translateX(7px); }
-                                    100% { transform: translateX(5px); }
+                                    50% { transform: translateX(4px); }
+                                    100% { transform: translateX(3.5px); }
                                 }
                                 @keyframes leftBracketReturnCenter {
-                                    0% { transform: translateX(-1px); }
+                                    0% { transform: translateX(0.5px); }
                                     100% { transform: translateX(2px); }
                                 }
                                 @keyframes rightBracketReturnCenter {
-                                    0% { transform: translateX(5px); }
+                                    0% { transform: translateX(3.5px); }
+                                    100% { transform: translateX(2px); }
+                                }
+                                @keyframes bracketPause {
+                                    0% { transform: translateX(2px); }
                                     100% { transform: translateX(2px); }
                                 }
                                 @keyframes bracketMoveBack {
                                     0% { transform: translateX(2px); }
+                                    50% { transform: translateX(-0.5px); }
                                     100% { transform: translateX(0); }
                                 }
                                 .doc-static { opacity: 1; }
                                 .left-bracket {
+                                    stroke-dasharray: 12 12;
+                                    stroke-dashoffset: 0;
                                     opacity: 1;
-                                    animation: bracketMoveToCenter 0.3s ease-out forwards, leftBracketSpread 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards, leftBracketReturnCenter 0.2s ease-in 0.6s forwards, bracketMoveBack 0.2s ease-out 0.8s forwards;
+                                    animation: leftBracketDraw 0.5s ease-out forwards, leftBracketSpread 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards, leftBracketReturnCenter 0.15s ease-out 0.8s forwards, bracketPause 0.07s linear 0.95s forwards, bracketMoveBack 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) 1.02s forwards;
                                 }
                                 .right-bracket {
+                                    stroke-dasharray: 12 12;
+                                    stroke-dashoffset: 0;
                                     opacity: 1;
-                                    animation: bracketMoveToCenter 0.3s ease-out forwards, rightBracketSpread 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards, rightBracketReturnCenter 0.2s ease-in 0.6s forwards, bracketMoveBack 0.2s ease-out 0.8s forwards;
+                                    animation: rightBracketDraw 0.5s ease-out forwards, rightBracketSpread 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards, rightBracketReturnCenter 0.15s ease-out 0.8s forwards, bracketPause 0.07s linear 0.95s forwards, bracketMoveBack 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) 1.02s forwards;
                                 }
                             </style>
                         </defs>
