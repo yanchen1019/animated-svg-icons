@@ -54,21 +54,21 @@
       .left-circle {
         stroke-dasharray: 12 12;
         stroke-dashoffset: 12;
-        animation: drawLeftCircle 0.5s ease-out 0.3s forwards;
+        animation: drawLeftCircle 0.4s ease-out 0.2s forwards;
       }
       .vertical-line {
         stroke-dasharray: 8 8;
         stroke-dashoffset: 8;
-        animation: drawVerticalLine 0.4s ease-out 0.8s forwards;
+        animation: drawVerticalLine 0.3s ease-out 0.5s forwards;
       }
       .right-circle {
         opacity: 0;
-        animation: rightCircleBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+        animation: rightCircleBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards;
       }
       .arc-line {
         stroke-dasharray: 20 20;
         stroke-dashoffset: 20;
-        animation: drawArcLine 0.8s ease-out 1.2s forwards;
+        animation: drawArcLine 0.5s ease-out 0.8s forwards;
       }
     </style>
   </defs>

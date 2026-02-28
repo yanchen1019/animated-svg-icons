@@ -29,12 +29,12 @@
       }
       .bar {
         transform-origin: 50% 15.75px;
-        animation: growBar 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        animation: growBar 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       }
       .trend-line {
         stroke-dasharray: 60 60;
         stroke-dashoffset: -60;
-        animation: drawTrendLine 1.5s ease-in-out 0.4s forwards;
+        animation: drawTrendLine 0.8s ease-in-out 0.4s forwards;
       }
     </style>
   </defs>

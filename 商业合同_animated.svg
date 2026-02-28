@@ -70,24 +70,24 @@
         transform-origin: 12.82px 10.31px;
       }
 
-      /* 0.2-0.4s: 钢笔左移 */
+      /* 0.15-0.3s: 钢笔左移 */
       .pen-left {
-        animation: penMoveLeft 0.2s ease-out 0.2s forwards;
+        animation: penMoveLeft 0.15s ease-out 0.15s forwards;
       }
 
-      /* 0.4-0.8s: 钢笔右移 */
+      /* 0.3-0.6s: 钢笔右移 */
       .pen-right {
-        animation: penMoveRight 0.4s linear 0.4s forwards;
+        animation: penMoveRight 0.3s linear 0.3s forwards;
       }
 
-      /* 1.2-1.4s: 钢笔转到-94度 */
+      /* 0.8-0.95s: 钢笔转到-94度 */
       .pen-rotate-to94 {
-        animation: penRotateTo94 0.2s ease-out 1.2s forwards;
+        animation: penRotateTo94 0.15s ease-out 0.8s forwards;
       }
 
-      /* 1.4-1.9s: 钢笔从-94度回弹复位 */
+      /* 0.95-1.3s: 钢笔从-94度回弹复位 */
       .pen-rotate-back {
-        animation: penRotateBack 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+        animation: penRotateBack 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.95s forwards;
       }
 
       /* 签名线动画：延伸 + 停留 + 回弹 */
@@ -96,8 +96,8 @@
         stroke-dashoffset: 0;
         opacity: 0;
         animation:
-          lineExtend 0.4s linear 0.4s forwards,
-          lineRetract 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+          lineExtend 0.3s linear 0.3s forwards,
+          lineRetract 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.95s forwards;
       }
     </style>
   </defs>
